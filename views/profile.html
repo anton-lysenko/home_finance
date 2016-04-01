@@ -1,0 +1,187 @@
+<h2>My Profile</h2>
+<div class="profile-page">
+    <div class="row">
+        <div class="col-xs-4">
+            <div class="user-info block-header ">
+                <h3>Personal Info</h3>
+            </div>
+            <div class="profile-data">
+                <div class="profile-data-text" ng-hide="profileCtrl.user.editable">
+                    <p class="firstname">{{profileCtrl.user.first_name}}</p>
+                    <p>{{profileCtrl.user.last_name}}</p>
+                </div>
+                <div class="profile-data-edit" ng-show="profileCtrl.user.editable">
+                    <input class="firstname" type="text" ng-model="profileCtrl.user.first_name" />
+                    <input type="text" ng-model="profileCtrl.user.last_name" />
+                </div>
+                <a href="javascript:void(0)" class="edit-btn" ng-hide="profileCtrl.user.editable" ng-click="profileCtrl.editData(profileCtrl.user)"></a>
+                <a href="javascript:void(0)" class="glyphicon glyphicon-save save-btn" ng-show="profileCtrl.user.editable" ng-click="profileCtrl.saveUserData(profileCtrl.user)"></a>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-xs-4">
+            <div class="user-info block-header ">
+                <h3>Money Flows</h3>
+            </div>
+            <div class="profile-data" ng-repeat="flow in profileCtrl.moneyFlows">
+                <div class="profile-data-text" ng-hide="flow.editable">
+                    <p>{{flow.name}}</p>
+                </div>
+                <div class="profile-data-edit" ng-show="flow.editable">
+                    <input type="text" ng-model="flow.name" />
+                </div>
+                <a href="javascript:void(0)" class="edit-btn" ng-hide="flow.editable" ng-click="profileCtrl.editData(flow)"></a>
+                <a href="javascript:void(0)" class="glyphicon glyphicon-save save-btn" ng-show="flow.editable" ng-click="profileCtrl.saveMoneyFlow(flow)"></a>
+            </div>
+        </div>
+        <div class="col-xs-3 col-xs-offset-1 add-block">
+            <div class="block-header">
+                <h3>Add Money Flow</h3>
+            </div>
+            <form name="addMoneyFlowForm" novalidate>
+                <div class="form-group">
+                    <label class="control-label" for="focuusedInput">Money Flow Name</label>
+                    <input id="focuusedInput" type="text" class="form-control" ng-model="profileCtrl.moneyFlow.name" required>
+                </div>
+                <button ng-click="addMoneyFlowForm.$valid && profileCtrl.addMoneyFlow(profileCtrl.moneyFlow)" class="btn btn-default btn-block">Add</button>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4">
+
+            <div class="user-info block-header">
+                <h3>Account</h3>
+            </div>
+
+            <div class="profile-data" ng-repeat="account in profileCtrl.accounts">
+                <div class="profile-data-text" ng-hide="account.editable">
+                    <p>{{account.name}}</p>
+                </div>
+                <div class="profile-data-edit" ng-show="account.editable">
+                    <input type="text" ng-model="account.name" />
+                </div>
+                <a href="javascript:void(0)" class="edit-btn" ng-hide="account.editable" ng-click="profileCtrl.editData(account)"></a>
+                <a href="javascript:void(0)" class="glyphicon glyphicon-save save-btn" ng-show="account.editable" ng-click="profileCtrl.saveAccount(account)"></a>
+            </div>
+        </div>
+
+        <div class="col-xs-3 col-xs-offset-1 add-block">
+            <div class="block-header">
+                <h3>Add Account</h3>
+            </div>
+            <form name="addAccountForm" novalidate>
+                <div class="form-group">
+                    <label class="control-label" for="focuusedInput">Account Name</label>
+                    <input id="focuusedInput" type="text" class="form-control" ng-model="profileCtrl.account.name" required>
+                </div>
+                <div class="form-group account-type-container">
+                    <p>Account Type</p>
+                    <label>
+                        <input type="radio" name="type" ng-model="profileCtrl.account.type" value="card"> Card
+                    </label>
+                    <label>
+                        <input type="radio" name="type" ng-model="profileCtrl.account.type" value="cash"> Cash
+                    </label>
+                    <label>
+                        <input type="radio" name="type" ng-model="profileCtrl.account.type" value="bank"> Bank
+                    </label>
+                </div>
+                <div class="form-group currency-container">
+                    <p>Currency:</p>
+                    <label ng-repeat="currency in profileCtrl.currencies">
+                        <input type="radio" name="currencyName" ng-model="profileCtrl.account.currency_id" ng-value="currency.id"> {{currency.name}}
+                    </label>
+                </div>
+                <button ng-click="addAccountForm.$valid && profileCtrl.addAccount(profileCtrl.account)" class="btn btn-default btn-block">Add</button>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4">
+
+            <div class="user-info block-header">
+                <h3>Categories</h3>
+            </div>
+
+            <div class="profile-data" ng-repeat="category in profileCtrl.categories">
+                <div class="profile-data-text" ng-hide="category.editable">
+                    <p>{{category.name}}</p>
+                    <div class="category-labels-container">
+                        <p class="label" ng-class="{'label-success':category.income, 'label-danger':!category.income}">Income</p>
+                        <p class="label" ng-class="{'label-success':category.outcome, 'label-danger':!category.outcome}">Outcome</p>
+                    </div>
+                </div>
+                <div class="profile-data-edit" ng-show="category.editable">
+                    <input type="text" ng-model="category.name" />
+                    <label>
+                        <input type="checkbox" ng-model="category.income"> Income
+                    </label>
+                    <label>
+                        <input type="checkbox" ng-model="category.outcome"> Outcome
+                    </label>
+                </div>
+                <a href="javascript:void(0)" class="edit-btn" ng-hide="category.editable" ng-click="profileCtrl.editData(category)"></a>
+                <a href="javascript:void(0)" class="glyphicon glyphicon-save save-btn" ng-show="category.editable" ng-click="profileCtrl.saveCategory(category)"></a>
+            </div>
+        </div>
+        <div class="col-xs-3 col-xs-offset-1 add-block">
+            <div class="block-header">
+                <h3>Add Category</h3>
+            </div>
+            <form name="addCategoryForm" novalidate>
+                <div class="form-group">
+                    <label class="control-label" for="focuusedInput">Category Name</label>
+                    <input id="focuusedInput" type="text" class="form-control" ng-model="profileCtrl.category.name" required>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" ng-model="profileCtrl.category.income"> Income
+                    </label>
+                    <label>
+                        <input type="checkbox" ng-model="profileCtrl.category.outcome"> Outcome
+                    </label>
+                </div>
+                <button ng-click="addCategoryForm.$valid && profileCtrl.addCategory(profileCtrl.category)" class="btn btn-default btn-block">Add</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-4">
+
+            <div class="user-info block-header">
+                <h3>Currencies</h3>
+            </div>
+
+            <div class="profile-data" ng-repeat="currency in profileCtrl.currencies">
+                <div class="profile-data-text" ng-hide="currency.editable">
+                    <p>{{currency.name}}</p>
+                </div>
+                <div class="profile-data-edit" ng-show="currency.editable">
+                    <input type="text" ng-model="currency.name" />
+                </div>
+                <a href="javascript:void(0)" class="edit-btn" ng-hide="currency.editable" ng-click="profileCtrl.editData(currency)"></a>
+                <a href="javascript:void(0)" class="glyphicon glyphicon-save save-btn" ng-show="currency.editable" ng-click="profileCtrl.saveCurrency(currency)"></a>
+            </div>
+        </div>
+        <div class="col-xs-3 col-xs-offset-1 add-block">
+            <div class="block-header">
+                <h3>Add Currency</h3>
+            </div>
+            <form name="addCurrencyForm" novalidate>
+                <div class="form-group">
+                    <label class="control-label" for="focuusedInput">Currency Name</label>
+                    <input id="focuusedInput" type="text" class="form-control" ng-model="profileCtrl.currency.name" required>
+                </div>
+                <button ng-click="addCurrencyForm.$valid && profileCtrl.addCurrency(profileCtrl.currency)" class="btn btn-default btn-block">Add</button>
+            </form>
+        </div>
+    </div>
+
+
+</div>

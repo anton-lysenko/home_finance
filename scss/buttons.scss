@@ -1,0 +1,30 @@
+.edit-btn {
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 24px;
+    height: 23px;
+    background-image: url(../img/edit.png);
+    text-decoration: none;
+    color: #000;
+    &:hover {
+        background-image: url(../img/edit_hover.png);
+    }
+}
+.save-btn {
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 24px;
+    height: 23px;
+    font-size: 20px;
+    text-decoration: none;
+    color: #000;
+    &:hover {
+        text-decoration: none;
+        color: #323432;
+        opacity: 0.5;
+    }
+}

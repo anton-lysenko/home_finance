@@ -1,0 +1,55 @@
+<tabset>
+            <tab ng-repeat="transaction in addTransactionsCtrl.transactionTabs" heading="{{transaction.title}}">
+                <form name="addTransactionForm" novalidate>
+                    <label>
+                        <input type="checkbox" ng-model="addTransactionsCtrl.transaction.future"> Future transaction
+                    </label>
+                    <div class="form-group">
+                        <div class="input-group" ng-show="addTransactionsCtrl.transaction.future">
+                            <input type="text" class="form-control" datepicker-popup="{{addTransactionsCtrl.format}}" ng-model="addTransactionsCtrl.transaction.date" is-open="addTransactionsCtrl.status.opened" show-weeks="false" show-button-bar="false" />
+                            <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="addTransactionsCtrl.open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-show="transaction.category">
+                        <label>Category</label>
+                        <select class="form-control" name="transactionCategory" ng-model="addTransactionsCtrl.transaction.category_id" ng-options="category.id as category.name for category in addTransactionsCtrl.categories">
+                            <option value="">-- choose category --</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="transactionComment">Comment</label>
+                        <textarea id="transactionComment" class="form-control" ng-model="addTransactionsCtrl.transaction.comment"></textarea>
+                    </div>
+                    <div class="form-group" ng-show="transaction.outcomeAccount">
+                        <label>Outcome account</label>
+                        <select class="form-control" name="transactionOutcomeAccount" ng-model="addTransactionsCtrl.transaction.outcome_account_id" ng-options="account.id as account.name for account in addTransactionsCtrl.accounts">
+                            <option value="">-- choose outcome account --</option>
+                        </select>
+                         
+                    </div>
+                    <div class="form-group" ng-show="transaction.incomeAccount">
+                        <label>Income account</label>
+                        <select class="form-control" name="transactionIncomeAccount" ng-model="addTransactionsCtrl.transaction.income_account_id" ng-options="account.id as account.name for account in addTransactionsCtrl.accounts">
+                            <option value="">-- choose income account --</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" ng-show="transaction.outcomeSum">
+                        <label>Outcome summ</label>
+                        <input class="form-control" type="number" ng-model="addTransactionsCtrl.transaction.outcome_sum" />
+                    </div>
+
+                    <div class="form-group" ng-show="transaction.incomeSum">
+                        <label>Income summ</label>
+                        <input class="form-control" type="number" ng-model="addTransactionsCtrl.transaction.income_sum" />
+                    </div>
+                    <button ng-click="addTransactionForm.$valid && addTransactionsCtrl.addTransaction(addTransactionsCtrl.transaction)" class="btn btn-default btn-block">Add transaction</button>
+                    <div class="cancel-transaction-block">
+                        <span>or</span>
+                        <a href="javascript:void(0)" ng-click="$parent.hideAddTransactionForm()">Cancel transaction</a>
+                    </div>
+                </form>
+            </tab>
+        </tabset>

@@ -1,0 +1,27 @@
+{
+  "name": "codeschool",
+  "version": "0.0.0",
+  "main": "index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-bootstrap": "~0.13.3",
+    "angular-resource": "~1.4.5",
+    "angular-route": "~1.4.5",
+    "angular-ui-router": "~0.2.15",
+    "angularjs": "~1.4.3",
+    "animate.css-scss": "~3.1.0",
+    "bootstrap": "https://github.com/angular-ui/bootstrap.git#~0.13.3",
+    "bootstrap-sass": "bootstrap-sass-official#~3.3.5",
+    "ng-notifications-bar": "~0.0.15",
+    "ngAnimate": "*",
+    "sass-bootstrap-glyphicons": "~1.0.0",
+    "SpinKit": "https://github.com/tobiasahlin/SpinKit.git#~1.2.1"
+  }
+}

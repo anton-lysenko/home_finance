@@ -1,0 +1,17 @@
+<section class="sign-in-up-block">
+    <h1>Sign In</h1>
+    
+    <form>
+        <div class="form-group">
+            <label class="control-label" for="focuusedInput">Login</label>
+            <input type="text" ng-model="signInCtrl.user.email" class="form-control">
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="focuusedInput">Password</label>
+            <input type="text" class="form-control" ng-model="signInCtrl.user.password">
+        </div>
+        <button ng-click="signInCtrl.signInUserByEmail()" class="btn btn-primary btn-block">Sign In</button>
+    </form>
+
+
+</section>

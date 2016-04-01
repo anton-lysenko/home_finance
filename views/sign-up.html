@@ -1,0 +1,25 @@
+<section class="sign-in-up-block">
+    <h1>Sign Up</h1>
+
+    <form>
+         <div class="form-group">
+            <label class="control-label" for="focuusedInput">First Name</label>
+            <input type="text" ng-model="signUpCtrl.user.first_name" class="form-control">
+        </div>
+         <div class="form-group">
+            <label class="control-label" for="focuusedInput">Last Name</label>
+            <input type="text" ng-model="signUpCtrl.user.last_name" class="form-control">
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="focuusedInput">Email</label>
+            <input type="text" ng-model="signUpCtrl.user.email" class="form-control">
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="focuusedInput">Password</label>
+            <input type="password" class="form-control" ng-model="signUpCtrl.user.password">
+        </div>
+        <button ng-click="signUpCtrl.createUser()" class="btn btn-primary btn-block">Sign Up</button>
+    </form>
+
+
+</section>
